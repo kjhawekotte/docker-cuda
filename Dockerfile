@@ -20,14 +20,8 @@ RUN cd /opt && \
   ./NVIDIA-Linux-x86_64-352.39.run -s -N --no-kernel-module
 
 RUN cd /opt/nvidia_installers && \
-  ./cuda-linux64-rel-7.5.18-19867135.run -noprompt && \
-  ./cuda-samples-linux-7.5.18-19867135.run -noprompt
-
+  ./cuda-linux64-rel-7.5.18-19867135.run -noprompt
 
 # Env vars for CUDA
 ENV LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH
 ENV PATH=/usr/local/cuda-7.5/bin:$PATH
-
-# Entry point
-RUN cd && cuda-install-samples-7.5.sh .
-RUN cd NVIDIA_CUDA-7.5_Samples/1_Utilities/deviceQuery && make
